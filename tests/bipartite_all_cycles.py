@@ -1,5 +1,5 @@
 from algorithms.bruteforce import get_feedback_vertex_set
-from graphs import bipartite_all_cycles
+from graphs import bipartite_all_cycles_graph
 from utils.functions import *
 
 print("Testing a custom bipartite graph with no cycle", end="\n")
@@ -9,8 +9,8 @@ number_of_nodes = 10
 print("Number of nodes: " + str(number_of_nodes))
 
 # get graph#
-g = bipartite_all_cycles.get_graph_nodes(number_of_nodes)
-before = bipartite_all_cycles.get_graph_nodes(number_of_nodes)
+g = bipartite_all_cycles_graph.get_graph_nodes(number_of_nodes)
+before = bipartite_all_cycles_graph.get_graph_nodes(number_of_nodes)
 
 # find feedback vertex set #
 start_time = time.time()

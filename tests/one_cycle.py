@@ -1,5 +1,5 @@
 from algorithms.bruteforce import get_feedback_vertex_set
-from graphs import one_cycle
+from graphs import one_cycle_graph
 from utils.functions import *
 
 print("Testing a custom graph with 1 cycle", end="\n")
@@ -9,8 +9,8 @@ number_of_nodes = 20
 print("Number of nodes: " + str(number_of_nodes))
 
 # get graph#
-g = one_cycle.get_graph_nodes(number_of_nodes)
-before = one_cycle.get_graph_nodes(number_of_nodes)
+g = one_cycle_graph.get_graph_nodes(number_of_nodes)
+before = one_cycle_graph.get_graph_nodes(number_of_nodes)
 
 # find feedback vertex set #
 start_time = time.time()
