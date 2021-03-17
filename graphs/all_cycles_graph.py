@@ -1,13 +1,26 @@
 import networkx as nx
-from utils.functions import show_graph
 
 
 def get_graph():
+    number_of_nodes = 10
     graph = nx.Graph()
-    graph.add_nodes_from(range(1, 10))
-    nx.add_cycle(graph, [1, 2, 3])
-    nx.add_cycle(graph, [3, 4, 5])
-    nx.add_cycle(graph, [5, 6, 7])
-    nx.add_cycle(graph, [7, 8, 9])
-    nx.add_cycle(graph, [9, 10, 1])
+    number_of_nodes = number_of_nodes+1
+    graph.add_nodes_from(range(1, number_of_nodes))
+    for i in graph.nodes:
+        for j in graph.nodes:
+            for k in graph.nodes:
+                if i != j and i != k and j != k:
+                    nx.add_cycle(graph, [i, j, k])
+    return graph
+
+
+def get_graph_nodes(number_of_nodes):
+    graph = nx.Graph()
+    number_of_nodes = number_of_nodes+1
+    graph.add_nodes_from(range(1, number_of_nodes))
+    for i in graph.nodes:
+        for j in graph.nodes:
+            for k in graph.nodes:
+                if i != j and i != k and j != k:
+                    nx.add_cycle(graph, [i, j, k])
     return graph
