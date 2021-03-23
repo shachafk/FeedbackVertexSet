@@ -1,6 +1,7 @@
 from algorithms.bruteforce import get_feedback_vertex_set
 from graphs import one_cycle_graph
 from utils.functions import *
+import utils.reductions
 
 print("Testing a custom graph with 1 cycle", end="\n")
 
