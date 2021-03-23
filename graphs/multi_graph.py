@@ -6,10 +6,10 @@ mg = nx.MultiGraph()
 mg.add_node(1)
 mg.add_node(2)
 mg.add_node(3)
-mg.add_edge(2, 1)
 mg.add_edge(1, 2)
-mg.add_edge(1, 2)
+mg.add_edge(1, 3)
 mg.add_edge(2, 3)
+mg.add_edge(1, 2)
 # mg.add_edge(1, 1)
 
 k = 3
