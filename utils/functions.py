@@ -9,7 +9,7 @@ from networkx import Graph, find_cycle, NetworkXNoCycle
 import time
 
 
-def print_runtime(start_time, test,nodes ,algorithm, feedback):
+def print_runtime(start_time, test, nodes, algorithm, feedback):
     my_file = Path('runTime.txt')
 
     if not my_file.exists():
@@ -17,13 +17,41 @@ def print_runtime(start_time, test,nodes ,algorithm, feedback):
             file.write("TEST;ALGORITHM;NUMBER_OF_NODES;VERTEX_FEEDBACK_SIZE;RUNTIME" + '\n')
 
     with open('runTime.txt', 'a') as file:
-        file.write(test + ";" + algorithm + ";" + str(nodes) + ";"+str(len(feedback))+";" + str((time.time() - start_time)) + '\n')
+        file.write(test + ";" + algorithm + ";" + str(nodes) + ";" + str(len(feedback)) + ";" + str(
+            (time.time() - start_time)) + '\n')
 
     print("file runTime.txt was updated")
 
 
-def show_graph(graph):
-    nx.draw(graph)
+def show_graph(g, figure):
+    pos = nx.circular_layout(g)
+
+    self_loop = set(nx.nodes_with_selfloops(g))
+    mg_minus_self_loop = set(g.nodes) - self_loop
+
+    nx.draw_networkx(g, pos)
+
+    nx.draw_networkx_nodes(g, pos, mg_minus_self_loop, node_color="r", node_size=250, alpha=1)
+    nx.draw_networkx_nodes(g, pos, self_loop, node_color="b", node_size=250, alpha=1)
+    ax = plt.gca()
+    for e in g.edges:
+        if (len(e) > 2):
+            style = 0.3 * e[2]
+        else :
+            style = 0
+        ax.annotate("",
+                    xy=pos[e[0]], xycoords='data',
+                    xytext=pos[e[1]], textcoords='data',
+                    arrowprops=dict(arrowstyle="-", color="0.5",
+                                    shrinkA=5, shrinkB=5,
+                                    patchA=None, patchB=None,
+                                    connectionstyle="arc3,rad=rrr".replace('rrr', str(style)
+                                                                           ),
+                                    ),
+                    )
+
+    plt.axis('off')
+    plt.figure(figure)
     plt.show()
 
 
@@ -40,13 +68,12 @@ def show_two_graphs(before, after):
         nx.draw_networkx(
             after,
             pos=nx.drawing.layout.bipartite_layout(after, side_b_after))
-    else:
-        plt.figure("before")
-        nx.draw_networkx(before)
-        plt.figure("after")
-        nx.draw_networkx(after)
 
-    plt.show()
+        plt.show()
+
+    else:
+        show_graph(before, "before")
+        show_graph(after, "after")
 
 
 def no_cycles(g: Graph):
