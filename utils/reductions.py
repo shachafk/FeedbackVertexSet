@@ -71,11 +71,13 @@ def run_reductions(g: nx.MultiGraph, k: int):
     x = set()
     while True:
         _continue = False
+        show_graph(g, "")
         for f in [reduction1, reduction2, reduction3, reduction4]:
             (k, x0, changed) = f(g, k)
 
             if changed:
                 _continue = True
+                print("changed in reduction " + str(f))
                 show_graph(g, "")
                 if x0 is not None:
                     x = x.union(x0)
