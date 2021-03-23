@@ -1,10 +1,5 @@
-from typing import List
 import networkx as nx
-from utils.functions import *
-from networkx.drawing.nx_agraph import to_agraph
-import graphviz
-from networkx.drawing.nx_pydot import write_dot
-import networkx as nx
+from utils.functions import show_graph
 
 
 def reduction1(g: nx.MultiGraph, k):
@@ -18,6 +13,19 @@ def reduction1(g: nx.MultiGraph, k):
         k -= 1
         changed = True
     return k, vs, changed
+
+
+def reduction2(g: nx.MultiGraph, k: int):
+    """
+     If there is an edge of multiplicity larger than 2, reduce its multiplicity to 2.
+    """
+    changed = False
+    for u in g.nodes():
+        for v in g.neighbors(u):
+            while g.number_of_edges(u, v) > 2:
+                g.remove_edge(u, v)
+                changed = True
+    return k, None, changed
 
 
 def reduction3(g: nx.MultiGraph, k: int):
@@ -55,24 +63,10 @@ def reduction4(g: nx.MultiGraph, k: int):
     return k, None, False
 
 
-# def reduction1(self, g: nx.MultiGraph, k: int) -> (int, List[int], bool):
-def reduction2(self, g: nx.MultiGraph, k: int):
-    changed = False
-    for u in g.nodes():
-        for v in g.neighbors(u):
-            while g.number_of_edges(u, v) > 2:
-                g.remove_edge(u, v)
-                changed = True
 def run_reductions(g: nx.MultiGraph, k: int):
     # reduction 1 can decrease k - the other reductions won't change k
     # reduction 1 can return X0 - the other reductions will return None
     # Need to check reduction 5 in the calling function
-
-    return k, None, changed
-
-# def reduction3(self, g: nx.MultiGraph, k: int) -> (int, List[int], bool):
-# def reduction4(self, g: nx.MultiGraph, k: int) -> (int, List[int], bool):
-# def reduction5(self, g: nx.MultiGraph, k: int) -> (int, List[int], bool):
     x = set()
     while True:
         _continue = False
@@ -86,3 +80,16 @@ def run_reductions(g: nx.MultiGraph, k: int):
 
         if not _continue:
             return k, x
+
+
+mg = nx.MultiGraph()
+mg.add_node(1)
+mg.add_node(2)
+mg.add_edge(1,2)
+mg.add_edge(1,2)
+mg.add_edge(1,2)
+mg.add_edge(1,2)
+show_graph(mg, "before")
+reduction2(mg, 2)
+show_graph(mg, "after")
+
