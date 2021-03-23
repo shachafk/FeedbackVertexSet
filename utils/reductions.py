@@ -7,7 +7,7 @@ def reduction1(g: nx.MultiGraph, k):
     If there is a loop at a vertex v, delete v from the graph and decrease k by 1.
     """
     changed = False
-    vs = nx.nodes_with_selfloops(g)
+    vs = list(nx.nodes_with_selfloops(g))
     for v in vs:
         g.remove_node(v)
         k -= 1
@@ -33,7 +33,8 @@ def reduction3(g: nx.MultiGraph, k: int):
     If there is a vertex v of degree at most 1, delete v.
     """
     changed = False
-    for v in g.nodes():
+    nodes = list(g.nodes())
+    for v in nodes:
         if g.degree(v) <= 1:
             g.remove_node(v)
             changed = True
@@ -47,7 +48,7 @@ def reduction4(g: nx.MultiGraph, k: int):
     for v in g.nodes():
         if g.degree(v) == 2:
             # Delete v and make its neighbors adjacent.
-            ne = g.neighbors(v)
+            ne = list(g.neighbors(v))
 
             if len(ne) == 2:  # v has 2 neighbors
                 [n1, n2] = ne
@@ -70,26 +71,14 @@ def run_reductions(g: nx.MultiGraph, k: int):
     x = set()
     while True:
         _continue = False
-        for f in [reduction1, reduction3, reduction4]:
+        for f in [reduction1, reduction2, reduction3, reduction4]:
             (k, x0, changed) = f(g, k)
 
             if changed:
                 _continue = True
+                show_graph(g, "")
                 if x0 is not None:
                     x = x.union(x0)
 
         if not _continue:
             return k, x
-
-
-mg = nx.MultiGraph()
-mg.add_node(1)
-mg.add_node(2)
-mg.add_edge(1,2)
-mg.add_edge(1,2)
-mg.add_edge(1,2)
-mg.add_edge(1,2)
-show_graph(mg, "before")
-reduction2(mg, 2)
-show_graph(mg, "after")
-

@@ -1,11 +1,11 @@
 import itertools
 
-from networkx import Graph
+from networkx import MultiGraph
 
 from utils.functions import delete_nodes_deg_zero_one, prune_graph, no_cycles
 
 
-def get_feedback_vertex_set(graph: Graph):
+def get_feedback_vertex_set(graph: MultiGraph):
     if no_cycles(graph):
         return set(), graph
 
