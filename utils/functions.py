@@ -11,13 +11,17 @@ import time
 
 def print_runtime(start_time, test, nodes, algorithm, feedback):
     my_file = Path('runTime.txt')
+    if feedback is None:
+        sol = "None"
+    else:
+        sol = str(len(feedback))
 
     if not my_file.exists():
         with open('runTime.txt', 'a') as file:
             file.write("TEST;ALGORITHM;NUMBER_OF_NODES;VERTEX_FEEDBACK_SIZE;RUNTIME" + '\n')
 
     with open('runTime.txt', 'a') as file:
-        file.write(test + ";" + algorithm + ";" + str(nodes) + ";" + str(len(feedback)) + ";" + str(
+        file.write(test + ";" + algorithm + ";" + str(nodes) + ";" + sol + ";" + str(
             (time.time() - start_time)) + '\n')
 
     print("file runTime.txt was updated")
@@ -37,7 +41,7 @@ def show_graph(g, figure):
     for e in g.edges:
         if (len(e) > 2):
             style = 0.3 * e[2]
-        else :
+        else:
             style = 0
         ax.annotate("",
                     xy=pos[e[0]], xycoords='data',
