@@ -4,7 +4,7 @@ from utils.functions import *
 
 print("Testing a custom graph with all cycles", end="\n")
 
-number_of_nodes = 20
+number_of_nodes = 5
 
 print("Number of nodes: " + str(number_of_nodes))
 
