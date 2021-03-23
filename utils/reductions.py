@@ -1,8 +1,7 @@
-
 import networkx as nx
 
 
-def reduction1(self, g: nx.MultiGraph, k):
+def reduction1(g: nx.MultiGraph, k):
     """
     If there is a loop at a vertex v, delete v from the graph and decrease k by 1.
     """
@@ -15,7 +14,7 @@ def reduction1(self, g: nx.MultiGraph, k):
     return k, vs, changed
 
 
-def reduction3(self, g: nx.MultiGraph, k: int):
+def reduction3(g: nx.MultiGraph, k: int):
     """
     If there is a vertex v of degree at most 1, delete v.
     """
@@ -27,7 +26,7 @@ def reduction3(self, g: nx.MultiGraph, k: int):
     return k, None, changed
 
 
-def reduction4(self, g: nx.MultiGraph, k: int):
+def reduction4(g: nx.MultiGraph, k: int):
     """
      If there is a vertex v of degree 2, delete v and connect its two neighbors by a new edge.
     """
@@ -36,9 +35,9 @@ def reduction4(self, g: nx.MultiGraph, k: int):
             # Delete v and make its neighbors adjacent.
             ne = g.neighbors(v)
 
-            if len(ne) == 2: #v has 2 neighbors
+            if len(ne) == 2:  # v has 2 neighbors
                 [n1, n2] = ne
-            else: #v has one neighbor with 2 edges
+            else:  # v has one neighbor with 2 edges
                 [n1] = ne
                 n2 = n1
 
@@ -50,3 +49,21 @@ def reduction4(self, g: nx.MultiGraph, k: int):
     return k, None, False
 
 
+def run_reductions(g: nx.MultiGraph, k: int):
+    # reduction 1 can decrease k - the other reductions won't change k
+    # reduction 1 can return X0 - the other reductions will return None
+    # Need to check reduction 5 in the calling function
+
+    x = set()
+    while True:
+        _continue = False
+        for f in [reduction1, reduction3, reduction4]:
+            (k, x0, changed) = f(g, k)
+
+            if changed:
+                _continue = True
+                if x0 is not None:
+                    x = x.union(x0)
+
+        if not _continue:
+            return k, x
