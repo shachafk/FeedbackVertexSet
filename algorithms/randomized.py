@@ -2,7 +2,6 @@ from networkx import MultiGraph
 from random import choice
 import math
 
-
 from utils.functions import no_cycles, prune_graph
 from utils.reductions import run_reductions
 
@@ -51,13 +50,13 @@ def get_feedback_vertex_set(graph: MultiGraph, k: int):
     else:
         n = 4 ** k  # max number of iterations
         print("n: " + str(n))
-        for i in range(1, n+1):
+        for i in range(1, n + 1):
             print("iterations number #" + str(i))
             sol = get_solution(graph.copy(), k)
             if sol is None:
                 print("couldn't find solution")
             else:
                 print("found solution from size: " + str(len(sol)))
-                return sol, graph
+                return sol, prune_graph(graph, sol)
 
     return None, None

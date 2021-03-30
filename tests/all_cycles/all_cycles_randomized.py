@@ -1,11 +1,11 @@
-from algorithms.bounded_search_tree import get_feedback_vertex_set
+from algorithms.randomized import get_feedback_vertex_set
 from graphs import all_cycles_graph
 from utils.functions import *
 
 print("Testing a custom graph with all cycles", end="\n")
 
 number_of_nodes = 18
-k = 15
+k = 16
 
 print("Number of nodes: " + str(number_of_nodes))
 
@@ -23,7 +23,7 @@ else:
     print("There is no solution")
 
 # print runtime #
-print_runtime(start_time, "all cycles", len(before.nodes), "bounded search tree", s)
+print_runtime(start_time, "all cycles", len(before.nodes), "randomized", s,k)
 
 # show graphs #
 if after is not None:

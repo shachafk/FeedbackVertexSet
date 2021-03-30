@@ -33,8 +33,9 @@ def get_feedback_vertex_set(graph: MultiGraph, k: int):
     # from the lemma, every solution x to FVS instance (G', k') contains at least one vertex from V3k'
     for v in nodes_sorted_by_degree:
         temp_graph = graph.copy()
-        temp_graph.remove_node(v[0])
+        node = v[0]
+        temp_graph.remove_node(node)
         x, g = get_feedback_vertex_set(temp_graph, k - 1)
         if x is not None:
-            return x.union({v}), g
+            return x.union({node}).union(sol), g
     return None, None

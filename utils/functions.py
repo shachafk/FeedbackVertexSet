@@ -9,20 +9,20 @@ from networkx import Graph, find_cycle, NetworkXNoCycle
 import time
 
 
-def print_runtime(start_time, test, nodes, algorithm, feedback):
-    my_file = Path('runTime.txt')
+def print_runtime(start_time, test, nodes, algorithm, feedback,k):
+    my_file = Path('../runTime.txt')
     if feedback is None:
         sol = "None"
     else:
         sol = str(len(feedback))
 
     if not my_file.exists():
-        with open('runTime.txt', 'a') as file:
-            file.write("TEST;ALGORITHM;NUMBER_OF_NODES;VERTEX_FEEDBACK_SIZE;RUNTIME" + '\n')
+        with open('../runTime.txt', 'a') as file:
+            file.write("TEST;ALGORITHM;NUMBER_OF_NODES;VERTEX_FEEDBACK_SIZE;RUNTIME;K" + '\n')
 
-    with open('runTime.txt', 'a') as file:
+    with open('../runTime.txt', 'a') as file:
         file.write(test + ";" + algorithm + ";" + str(nodes) + ";" + sol + ";" + str(
-            (time.time() - start_time)) + '\n')
+            (time.time() - start_time)) + ";" + str(k) + '\n')
 
     print("file runTime.txt was updated")
 
@@ -94,11 +94,12 @@ def prune_graph(g: Graph, s: set):
     return new_graph
 
 
+
 def delete_nodes_deg_zero_one(g: Graph):
-    node_deleted = False
     nodes = list(g.nodes())
+    deleted_nodes = set()
     for v in nodes:
         if g.degree(v) <= 1:
             g.remove_node(v)
-            node_deleted = True
-    return node_deleted
+            deleted_nodes.add(v)
+    return deleted_nodes
