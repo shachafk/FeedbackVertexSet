@@ -77,7 +77,7 @@ def run_reductions(g: nx.MultiGraph, k: int):
 
             if changed:
                 _continue = True
-                print("changed in reduction " + str(f))
+                # print("changed in reduction " + str(f))
                # show_graph(g, "")
                 if x0 is not None:
                     x = x.union(x0)

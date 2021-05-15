@@ -1,4 +1,6 @@
 import itertools
+import datetime
+
 import matplotlib.pyplot as plt
 import networkx as nx
 import os.path
@@ -9,20 +11,20 @@ from networkx import Graph, find_cycle, NetworkXNoCycle
 import time
 
 
-def print_runtime(start_time, test, nodes, algorithm, feedback,k):
+def print_runtime(start_time, end_time, test, nodes, algorithm, feedback, k):
     my_file = Path('../runTime.txt')
     if feedback is None:
         sol = "None"
     else:
         sol = str(len(feedback))
-
+    timediff = end_time - start_time
     if not my_file.exists():
         with open('../runTime.txt', 'a') as file:
             file.write("TEST;ALGORITHM;NUMBER_OF_NODES;VERTEX_FEEDBACK_SIZE;RUNTIME;K" + '\n')
 
     with open('../runTime.txt', 'a') as file:
         file.write(test + ";" + algorithm + ";" + str(nodes) + ";" + sol + ";" + str(
-            (time.time() - start_time)) + ";" + str(k) + '\n')
+            timediff) + ";" + str(k) + '\n')
 
     print("file runTime.txt was updated")
 
@@ -92,7 +94,6 @@ def prune_graph(g: Graph, s: set):
     new_nodes = [x for x in g.nodes() if x not in s]
     new_graph = g.subgraph(new_nodes)
     return new_graph
-
 
 
 def delete_nodes_deg_zero_one(g: Graph):

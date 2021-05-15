@@ -2,7 +2,7 @@ import itertools
 
 from networkx import MultiGraph
 
-from utils.functions import delete_nodes_deg_zero_one, prune_graph, no_cycles
+from utils.functions import prune_graph, no_cycles
 
 
 def get_feedback_vertex_set(graph: MultiGraph, k: int):
@@ -15,7 +15,7 @@ def get_feedback_vertex_set(graph: MultiGraph, k: int):
     nodes = graph.nodes()
     i = 1
     for subset in itertools.combinations(nodes, k):
-        print("Iteration number #" + str(i))
+        # print("Iteration number #" + str(i))
         # create new graph without current subset
         new_graph = prune_graph(graph.copy(), subset)
         i += 1

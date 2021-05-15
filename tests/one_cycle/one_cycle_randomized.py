@@ -15,7 +15,7 @@ before = one_cycle_graph.get_graph_nodes(number_of_nodes)
 show_graph(before, "before")
 
 # find feedback vertex set #
-start_time = time.time()
+start_time = datetime.datetime.now()
 s, after = get_feedback_vertex_set(g, 4)
 print("Found feedback vertex set from size:" + str(len(s)))
 

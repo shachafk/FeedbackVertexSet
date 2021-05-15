@@ -15,7 +15,7 @@ before = all_cycles_graph.get_graph_nodes(number_of_nodes)
 show_graph(before, "before")
 
 # find feedback vertex set #
-start_time = time.time()
+start_time = datetime.datetime.now()
 s, after = get_feedback_vertex_set(g, k)
 if s is not None:
     print("Found feedback vertex set from size:" + str(len(s)))
@@ -23,7 +23,8 @@ else:
     print("There is no solution")
 
 # print runtime #
-print_runtime(start_time, "all cycles", len(before.nodes), "randomized", s,k)
+end_time = datetime.datetime.now()
+print_runtime(start_time, end_time, "all cycles", len(before.nodes), "randomized", s, k)
 
 # show graphs #
 if after is not None:
