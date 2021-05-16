@@ -20,7 +20,8 @@ s, after = get_feedback_vertex_set(g, 4)
 print("Found feedback vertex set from size:" + str(len(s)))
 
 # print runtime #
-print_runtime(start_time, "one cycle", len(before.nodes), "randomized", s, k)
+end_time = datetime.datetime.now()
+print_runtime(start_time, end_time, "one cycle", len(before.nodes), len(before.edges), "randomized", s, k)
 
 # show graphs #
 show_graph(after, "after")

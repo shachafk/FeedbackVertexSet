@@ -18,7 +18,8 @@ s, after = get_feedback_vertex_set(g, k)
 print("Found feedback vertex set from size:" + str(len(s)))
 
 # print runtime #
-print_runtime(start_time, "bipartite_all_cycles", len(before.nodes), "bruteforce", s)
+end_time = datetime.datetime.now()
+print_runtime(start_time, end_time, "bipartite_all_cycles", len(before.nodes), len(before.edges), "bruteforce", s, k)
 
 # show graphs #
 show_two_graphs(before, after)

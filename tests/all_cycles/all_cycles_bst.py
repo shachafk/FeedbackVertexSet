@@ -26,7 +26,7 @@ else:
 
 # print runtime #
 end_time = datetime.datetime.now()
-print_runtime(start_time, end_time, "all cycles", len(before.nodes), "bounded search tree", s, k)
+print_runtime(start_time, end_time, "all cycles", len(before.nodes), len(before.edges), "bounded search tree", s, k)
 
 # show graphs #
 if after is not None:

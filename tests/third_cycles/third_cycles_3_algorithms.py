@@ -42,10 +42,10 @@ def run_test(n, k):
 
     print("exiting")
 
-    exit()
+    return
 
 
 if __name__ == '__main__':
-    for n in range(15, 35):
+    for n in range(20, 49):
         if n % 2 == 0:
-            run_test(n, 15)
+            run_test(n, 25)

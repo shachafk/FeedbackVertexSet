@@ -24,7 +24,7 @@ elif s is not None and len(s) > k:
 
 # print runtime #
 end_time = datetime.datetime.now()
-print_runtime(start_time,end_time, "half cycles", len(before.nodes), "randomized", s,k)
+print_runtime(start_time,end_time, "half cycles", len(before.nodes),len(before.edges), "randomized", s,k)
 
 # show graphs #
 show_two_graphs(before, after)

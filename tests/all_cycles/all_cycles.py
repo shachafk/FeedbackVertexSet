@@ -23,7 +23,7 @@ elif s is not None and len(s) > k:
     print("there is no solution")
 
 # print runtime #
-print_runtime(start_time, "all cycles", len(before.nodes), "bruteforce", s,k)
+print_runtime(start_time, "all cycles", len(before.nodes), len(before.edges), "bruteforce", s, k)
 
 # show graphs #
 show_two_graphs(before, after)

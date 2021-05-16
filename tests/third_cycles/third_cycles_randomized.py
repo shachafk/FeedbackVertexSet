@@ -18,21 +18,21 @@ def run_test(n, k):
     # find feedback vertex set #
     start_time = datetime.datetime.now()
     s, after = get_feedback_vertex_set(g, k)
-    print("Found feedback vertex set from size:" + str(len(s)))
     if s is not None and len(s) <= k:
+        print("Found feedback vertex set from size:" + str(len(s)))
         print("found solution")
     elif s is not None and len(s) > k:
         print("there is no solution")
 
     # print runtime #
     end_time = datetime.datetime.now()
-    print_runtime(start_time, end_time, "third cycles", len(before.nodes), "randomized", s, k)
+    print_runtime(start_time, end_time, "third cycles", len(before.nodes), len(before.edges), "randomized", s, k)
 
     # show graphs #
     # show_two_graphs(before, after)
 
 
 if __name__ == '__main__':
-    for n in range(15, 35):
+    for n in range(20, 49):
         if n % 2 == 0:
-            run_test(n, 15)
+            run_test(n, 25)

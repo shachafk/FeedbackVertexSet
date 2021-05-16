@@ -11,19 +11,19 @@ from networkx import Graph, find_cycle, NetworkXNoCycle
 import time
 
 
-def print_runtime(start_time, end_time, test, nodes, algorithm, feedback, k):
+def print_runtime(start_time, end_time, test, nodes, edges, algorithm, feedback, k):
     my_file = Path('../runTime.txt')
     if feedback is None:
         sol = "None"
     else:
         sol = str(len(feedback))
-    timediff = end_time - start_time
+    timediff = (end_time - start_time).total_seconds()
     if not my_file.exists():
         with open('../runTime.txt', 'a') as file:
-            file.write("TEST;ALGORITHM;NUMBER_OF_NODES;VERTEX_FEEDBACK_SIZE;RUNTIME;K" + '\n')
+            file.write("TEST;ALGORITHM;NUMBER_OF_NODES;NUMBER_OF_EDGES;VERTEX_FEEDBACK_SIZE;RUNTIME;K" + '\n')
 
     with open('../runTime.txt', 'a') as file:
-        file.write(test + ";" + algorithm + ";" + str(nodes) + ";" + sol + ";" + str(
+        file.write(test + ";" + algorithm + ";" + str(nodes) + ";" + str(edges) + ";" + sol + ";" + str(
             timediff) + ";" + str(k) + '\n')
 
     print("file runTime.txt was updated")

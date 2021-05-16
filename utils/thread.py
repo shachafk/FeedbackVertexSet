@@ -23,7 +23,7 @@ class myThread(threading.Thread):
         print("Starting " + str(self.threadID))
         before = self.graph.copy()
         # find feedback vertex set #
-        start_time = time.time.monotonic()
+        start_time = datetime.datetime.now()
         s, after = self.func(self.graph, self.k)
         if s is not None:
             print("Found feedback vertex set from size:" + str(len(s)))
@@ -32,8 +32,8 @@ class myThread(threading.Thread):
         else:
             print("there is no solution")
         # print runtime #
-        end_time = time.time.monotonic()
-        print_runtime(start_time,end_time, self.test_name, len(before.nodes), self.name, s, self.k)
+        end_time = datetime.datetime.now()
+        print_runtime(start_time, end_time, self.test_name, len(before.nodes), len(before.edges), self.name, s, self.k)
         self.sol = s
 
     def stop(self):

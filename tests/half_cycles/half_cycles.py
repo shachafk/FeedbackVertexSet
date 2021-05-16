@@ -26,6 +26,6 @@ else:
 
 # print runtime #
 end_time = datetime.datetime.now()
-print_runtime(start_time, end_time, "half cycles", len(before.nodes), "bruteforce", s, k)
+print_runtime(start_time, end_time, "half cycles", len(before.nodes),len(before.edges), "bruteforce", s, k)
 
 # show graphs #

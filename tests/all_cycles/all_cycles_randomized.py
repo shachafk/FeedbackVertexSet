@@ -24,7 +24,7 @@ else:
 
 # print runtime #
 end_time = datetime.datetime.now()
-print_runtime(start_time, end_time, "all cycles", len(before.nodes), "randomized", s, k)
+print_runtime(start_time, end_time, "all cycles", len(before.nodes),len(before.edges), "randomized", s, k)
 
 # show graphs #
 if after is not None:
