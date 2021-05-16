@@ -14,12 +14,13 @@ g = one_cycle_graph.get_graph_nodes(number_of_nodes)
 before = one_cycle_graph.get_graph_nodes(number_of_nodes)
 
 # find feedback vertex set #
-start_time = time.time()
+start_time = datetime.datetime.now()
 s, after = get_feedback_vertex_set(g, k)
 print("Found feedback vertex set from size:" + str(len(s)))
 
 # print runtime #
-print_runtime(start_time, "one cycle", len(before.nodes), "bruteforce", s,k)
+end_time = datetime.datetime.now()
+print_runtime(start_time, end_time, "one cycle", len(before.nodes), len(before.edges), "bruteforce", s, k)
 
 # show graphs #
 show_two_graphs(before, after)

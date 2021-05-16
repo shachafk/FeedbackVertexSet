@@ -9,15 +9,15 @@ def get_feedback_vertex_set(graph: MultiGraph, k: int):
 
     sol = set()
     # run reductions 1-4
-    print("before reductions: nodes-" + str(len(graph.nodes)) + ", k-", str(k))
+    # print("before reductions: nodes-" + str(len(graph.nodes)) + ", k-", str(k))
     k, x0 = run_reductions(graph, k)
-    print("after reductions: nodes-" + str(len(graph.nodes)) + ", k-", str(k))
+    # print("after reductions: nodes-" + str(len(graph.nodes)) + ", k-", str(k))
     # add current solution to our solution, these are self-loop nodes
     if x0 is not None:
         sol = sol.union(x0)
     # reduction 5
     if k < 0:
-        print("invalid k")
+        # print("invalid k")
         return None, None
 
     # we now have new instance (G', k') such that G' has min degree at least 3 and k' <= k
