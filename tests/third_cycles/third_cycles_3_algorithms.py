@@ -10,6 +10,7 @@ from sys import exit
 
 
 def run_test(n, k):
+
     print("Testing a custom graph with third cycles - 3 algorithms", end="\n")
 
     number_of_nodes = n
@@ -46,6 +47,6 @@ def run_test(n, k):
 
 
 if __name__ == '__main__':
-    for n in range(20, 49):
-        if n % 2 == 0:
-            run_test(n, 25)
+    # for n in range(10, 26):
+    run_test(20, 6)
+        # if n % 2 == 0:
