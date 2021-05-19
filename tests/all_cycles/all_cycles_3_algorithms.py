@@ -1,7 +1,7 @@
 from algorithms.bounded_search_tree import get_feedback_vertex_set as bst_func
 from algorithms.bruteforce import get_feedback_vertex_set as bf_func
 from algorithms.randomized import get_feedback_vertex_set as randomized_func
-from graphs.half_cycles_graph import get_graph_nodes
+from graphs.all_cycles_graph import get_graph_nodes
 from utils.thread import myThread
 
 
@@ -17,9 +17,9 @@ def run_test(n, k):
     g = get_graph_nodes(number_of_nodes)
 
     # Create new threads
-    thread1 = myThread(1, bf_func, g, k, "bruteforce", "half_cycles", daemon=True)
-    thread2 = myThread(2, randomized_func, g, k, "randomized", "half_cycles", daemon=True)
-    thread3 = myThread(3, bst_func, g, k, "bst", "half_cycles", daemon=True)
+    thread1 = myThread(1, bf_func, g, k, "bruteforce", "all cycles", daemon=True)
+    thread2 = myThread(2, randomized_func, g, k, "randomized", "all cycles", daemon=True)
+    thread3 = myThread(3, bst_func, g, k, "bst", "all cycles", daemon=True)
 
     print("threads created")
 
@@ -43,9 +43,7 @@ def run_test(n, k):
     print("exiting")
 
 
-
-
 if __name__ == '__main__':
-    # for n in range(1, 16):
-    run_test(15, 6)
-        # if n % 2 == 0:
+    # for n in range(1, 12):
+    run_test(12, 8)
+    # if n % 2 == 0:

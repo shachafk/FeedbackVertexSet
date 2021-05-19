@@ -20,10 +20,11 @@ class myThread(threading.Thread):
         self.test_name = test_name
 
     def run(self):
+        start_time = datetime.datetime.now()
+        time.sleep(0.1)
         print("Starting " + str(self.threadID))
         before = self.graph.copy()
         # find feedback vertex set #
-        start_time = datetime.datetime.now()
         s, after = self.func(self.graph, self.k)
         if s is not None:
             print("Found feedback vertex set from size:" + str(len(s)))
@@ -47,6 +48,7 @@ class myThread(threading.Thread):
 
     def raise_exception(self):
         self.stop()
+        sys.exit(0)
 
     def exit(self):
         self.raise_exception()

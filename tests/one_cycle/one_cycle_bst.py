@@ -12,7 +12,7 @@ print("Number of nodes: " + str(number_of_nodes))
 g = one_cycle_graph.get_graph_nodes(number_of_nodes)
 before = one_cycle_graph.get_graph_nodes(number_of_nodes)
 
-show_graph(before, "before")
+# show_graph(before, "before")
 
 # find feedback vertex set #
 start_time = datetime.datetime.now()
@@ -25,4 +25,4 @@ end_time = datetime.datetime.now()
 print_runtime(start_time, end_time, "one cycle", len(before.nodes),len(before.edges), "bounded search tree", s, k)
 
 # show graphs #
-show_graph(after, "after")
+# show_graph(after, "after")

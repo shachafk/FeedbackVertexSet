@@ -2,29 +2,39 @@ from algorithms.randomized import get_feedback_vertex_set
 from graphs.half_cycles_graph import get_graph_nodes
 from utils.functions import *
 
-print("Testing a custom graph with half cycles", end="\n")
 
-number_of_nodes = 7
-k = 4
+def run_test(n, k):
+    start_time = datetime.datetime.now()
+    time.sleep(0.1)
+    print("Testing a custom graph with half cycles", end="\n")
 
-print("Number of nodes: " + str(number_of_nodes))
+    number_of_nodes = n
+    # k = 4
 
-# get graph#
-g = get_graph_nodes(number_of_nodes)
-before = get_graph_nodes(number_of_nodes)
+    print("Number of nodes: " + str(number_of_nodes))
 
-# find feedback vertex set #
-start_time = datetime.datetime.now()
-s, after = get_feedback_vertex_set(g, k)
-print("Found feedback vertex set from size:" + str(len(s)))
-if s is not None and len(s) <= k:
-    print("found solution")
-elif s is not None and len(s) > k:
-    print("there is no solution")
+    # get graph#
+    g = get_graph_nodes(number_of_nodes)
+    before = get_graph_nodes(number_of_nodes)
 
-# print runtime #
-end_time = datetime.datetime.now()
-print_runtime(start_time,end_time, "half cycles", len(before.nodes),len(before.edges), "randomized", s,k)
+    # find feedback vertex set #
+    s, after = get_feedback_vertex_set(g, k)
+    if s is not None and len(s) <= k:
+        print("Found feedback vertex set from size:" + str(len(s)))
+        print("found solution")
+    elif s is not None and len(s) > k:
+        print("there is no solution")
 
-# show graphs #
-show_two_graphs(before, after)
+    # print runtime #
+    end_time = datetime.datetime.now()
+    print_runtime(start_time,end_time, "half cycles", len(before.nodes),len(before.edges), "randomized", s,k)
+
+    # show graphs #
+    # show_two_graphs(before, after)
+
+
+
+if __name__ == '__main__':
+    for n in range(6, 20):
+        run_test(n, 10)
+        # if n % 2 == 0:
