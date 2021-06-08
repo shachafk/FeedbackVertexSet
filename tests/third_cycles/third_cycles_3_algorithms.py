@@ -1,16 +1,11 @@
-import sys
-
+from algorithms.bounded_search_tree import get_feedback_vertex_set as bst_func
 from algorithms.bruteforce import get_feedback_vertex_set as bf_func
 from algorithms.randomized import get_feedback_vertex_set as randomized_func
-from algorithms.bounded_search_tree import get_feedback_vertex_set as bst_func
-
 from graphs.third_cycles_graph import get_graph_nodes
 from utils.thread import myThread
-from sys import exit
 
 
 def run_test(n, k):
-
     print("Testing a custom graph with third cycles - 3 algorithms", end="\n")
 
     number_of_nodes = n
@@ -32,9 +27,6 @@ def run_test(n, k):
     thread2.start()
     thread3.start()
 
-    print("waiting")
-
-    # if thread1.get():
     j = 0
     while thread1.get() == -1 and thread2.get() == -1 and thread3.get() == -1:
         j += 1
@@ -47,6 +39,4 @@ def run_test(n, k):
 
 
 if __name__ == '__main__':
-    # for n in range(10, 26):
-    run_test(20, 6)
-        # if n % 2 == 0:
+    run_test(20, 8)

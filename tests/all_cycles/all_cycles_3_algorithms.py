@@ -44,6 +44,6 @@ def run_test(n, k):
 
 
 if __name__ == '__main__':
-    # for n in range(1, 12):
-    run_test(12, 8)
-    # if n % 2 == 0:
+    for n in range(0, 11):
+        if n % 2 == 0:
+            run_test(n, 7)

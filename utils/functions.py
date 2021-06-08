@@ -15,6 +15,9 @@ def print_runtime(start_time, end_time, test, nodes, edges, algorithm, feedback,
     my_file = Path('../runTime.txt')
     if feedback is None:
         sol = "None"
+    elif len(feedback) > k:
+        print("found larger feedback set from size ", str(len(feedback)))
+        sol = "None"
     else:
         sol = str(len(feedback))
     timediff = (end_time - start_time).total_seconds()
@@ -27,6 +30,27 @@ def print_runtime(start_time, end_time, test, nodes, edges, algorithm, feedback,
             timediff) + ";" + str(k) + '\n')
 
     print("file runTime.txt was updated")
+
+
+def print_runtime_id(threadID, start_time, end_time, test, nodes, edges, algorithm, feedback, k):
+    filename = "../runTime_" + str(threadID) + ".txt"
+    my_file = Path(filename)
+    if feedback is None:
+        sol = "None"
+    elif len(feedback) > k:
+        sol = "None"
+    else:
+        sol = str(len(feedback))
+    timediff = (end_time - start_time).total_seconds()
+    if not my_file.exists():
+        with open(filename, 'a') as file:
+            file.write("TEST;ALGORITHM;NUMBER_OF_NODES;NUMBER_OF_EDGES;VERTEX_FEEDBACK_SIZE;RUNTIME;K" + '\n')
+
+    with open(filename, 'a') as file:
+        file.write(test + ";" + algorithm + ";" + str(nodes) + ";" + str(edges) + ";" + sol + ";" + str(
+            timediff) + ";" + str(k) + '\n')
+
+    print("file " + filename + " was updated")
 
 
 def show_graph(g, figure):
