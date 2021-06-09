@@ -1,12 +1,14 @@
+
 from algorithms.bounded_search_tree import get_feedback_vertex_set as bst_func
 from algorithms.bruteforce import get_feedback_vertex_set as bf_func
 from algorithms.randomized import get_feedback_vertex_set as randomized_func
-from graphs.third_cycles_graph import get_graph_nodes
+from graphs.one_cycle_graph import get_graph_nodes
 from utils.thread import myThread
+from utils.functions import *
 
 
 def run_test(n, k):
-    print("Testing a custom graph with third cycles - 3 algorithms", end="\n")
+    print("Testing a custom graph with one cycle - 3 algorithms", end="\n")
 
     number_of_nodes = n
     # k = 8
@@ -16,9 +18,9 @@ def run_test(n, k):
     # get graph#
     g = get_graph_nodes(number_of_nodes)
     # Create new threads
-    thread1 = myThread(1, bf_func, g, k, "bruteforce", "third cycle", daemon=True)
-    thread2 = myThread(2, randomized_func, g, k, "randomized", "third cycle", daemon=True)
-    thread3 = myThread(3, bst_func, g, k, "bst", "third cycle", daemon=True)
+    thread1 = myThread(1, bf_func, g, k, "bruteforce", "one cycle", daemon=True)
+    thread2 = myThread(2, randomized_func, g, k, "randomized", "one cycle", daemon=True)
+    thread3 = myThread(3, bst_func, g, k, "bst", "one cycle", daemon=True)
 
     print("threads created")
 
@@ -29,14 +31,15 @@ def run_test(n, k):
 
     j = 0
     while thread1.get() == -1 and thread2.get() == -1 and thread3.get() == -1:
-        j += 1
-
-    print("one thread is done")
+        time.sleep(1)
+    # thread2.stop()
+    # thread3.stop()
+    # thread1.stop()
 
     print("exiting")
 
-    return
+    exit()
 
 
 if __name__ == '__main__':
-    run_test(20, 8)
+    run_test(25, 6)

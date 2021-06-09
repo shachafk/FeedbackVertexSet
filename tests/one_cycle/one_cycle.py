@@ -9,7 +9,7 @@ def run_test(n, k):
     # k = 8
     start_time = datetime.datetime.now()
     time.sleep(0.001)
-    print("Testing a custom graph with third cycles", end="\n")
+    print("Testing a custom graph with one cycle", end="\n")
 
     number_of_nodes = n
 
@@ -33,5 +33,6 @@ def run_test(n, k):
 
 
 if __name__ == '__main__':
-    for k in range(1, 6):
-        run_test(18, k)
+    for k in range(1, 7):
+        run_test(25, k)
+

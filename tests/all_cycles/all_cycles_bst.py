@@ -37,6 +37,5 @@ def run_test(n, k):
 
 
 if __name__ == '__main__':
-    for n in range(0, 13):
-        if n % 2 == 0:
-            run_test(n, 5)
+    for n in range(1, 14):
+        run_test(n, 8)

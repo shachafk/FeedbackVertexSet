@@ -33,7 +33,5 @@ def run_test(n, k):
 # show graphs #
 # show_two_graphs(before, after)
 if __name__ == '__main__':
-    for n in range(0, 13):
-        if n % 2 == 0:
-            run_test(n, 5)
-
+    for n in range(10, 40):
+            run_test(n, 28)

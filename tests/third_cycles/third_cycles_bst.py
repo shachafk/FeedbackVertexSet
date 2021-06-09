@@ -38,5 +38,6 @@ def run_test(n, k):
 
 
 if __name__ == '__main__':
-    for k in range(1, 9):
-        run_test(20, k)
+    for k in range(1, 8):
+        # if n % 2 == 0:
+        run_test(18, k)
