@@ -4,14 +4,20 @@ from utils.functions import no_cycles
 
 
 def get_feedback_vertex_set(graph: MultiGraph, k: int):
+    # print("get_feedback_vertex_set for n=" + str(len(graph.nodes)) + ", k=", str(k))
+    if k < 0:
+        # print("invalid k")
+        return None, None
+
     if no_cycles(graph):
+        print("no cycle - return")
         return set(), graph
 
     sol = set()
     # run reductions 1-4
-    # print("before reductions: nodes-" + str(len(graph.nodes)) + ", k-", str(k))
+    # print("before reductions: nodes-" + str(len(graph.nodes)) + ", k=", str(k))
     k, x0 = run_reductions(graph, k)
-    # print("after reductions: nodes-" + str(len(graph.nodes)) + ", k-", str(k))
+    # print("after reductions: nodes-" + str(len(graph.nodes)) + ", k=", str(k))
     # add current solution to our solution, these are self-loop nodes
     if x0 is not None:
         sol = sol.union(x0)

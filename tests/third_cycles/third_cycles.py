@@ -4,11 +4,10 @@ from utils.functions import *
 
 
 def run_test(n, k):
-
     # number_of_nodes = 20
     # k = 8
     start_time = datetime.datetime.now()
-    time.sleep(0.1)
+    time.sleep(0.001)
     print("Testing a custom graph with third cycles", end="\n")
 
     number_of_nodes = n
@@ -33,6 +32,6 @@ def run_test(n, k):
 
 
 if __name__ == '__main__':
-    for n in range(1, 20):
-        run_test(n, 6)
+    for k in range(1, 8):
         # if n % 2 == 0:
+        run_test(18, k)

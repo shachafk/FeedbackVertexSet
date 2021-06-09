@@ -5,7 +5,7 @@ from utils.functions import *
 
 def run_test(n, k):
     start_time = datetime.datetime.now()
-    time.sleep(0.1)
+    time.sleep(0.001)
     print("Testing a custom graph with all cycles", end="\n")
 
     number_of_nodes = n
@@ -33,6 +33,5 @@ def run_test(n, k):
 # show graphs #
 # show_two_graphs(before, after)
 if __name__ == '__main__':
-    for n in range(1, 12):
-        run_test(n, 8)
-        # if n % 2 == 0:
+    for n in range(10, 40):
+            run_test(n, 28)

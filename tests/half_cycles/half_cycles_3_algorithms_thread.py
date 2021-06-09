@@ -3,6 +3,7 @@ from algorithms.bruteforce import get_feedback_vertex_set as bf_func
 from algorithms.randomized import get_feedback_vertex_set as randomized_func
 from graphs.half_cycles_graph import get_graph_nodes
 from utils.thread import myThread
+from utils.functions import *
 
 
 def run_test(n, k):
@@ -30,22 +31,16 @@ def run_test(n, k):
 
     print("waiting")
 
-    # if thread1.get():
-    j = 0
     while thread1.get() == -1 and thread2.get() == -1 and thread3.get() == -1:
-        j += 1
+        time.sleep(1)
 
-    print("one thread is done")
-    thread1.raise_exception()
-    thread2.raise_exception()
-    thread3.raise_exception()
+    # thread1.raise_exception()
+    # thread2.raise_exception()
+    # thread3.raise_exception()
 
     print("exiting")
-
-
+    exit()
 
 
 if __name__ == '__main__':
-    # for n in range(1, 16):
-    run_test(15, 6)
-        # if n % 2 == 0:
+    run_test(15, 8)

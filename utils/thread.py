@@ -1,7 +1,5 @@
-import ctypes
 import sys
 import threading
-import time
 
 from utils.functions import *
 
@@ -21,8 +19,8 @@ class myThread(threading.Thread):
 
     def run(self):
         start_time = datetime.datetime.now()
-        time.sleep(0.1)
-        print("Starting " + str(self.threadID))
+        time.sleep(0.001)
+        print("Starting " + str(self.threadID) + " for k= " + str(self.k))
         before = self.graph.copy()
         # find feedback vertex set #
         s, after = self.func(self.graph, self.k)
@@ -31,10 +29,11 @@ class myThread(threading.Thread):
             # show graphs #
             # show_two_graphs(before, after)
         else:
-            print("there is no solution")
+            print("there is no solution " + "for threadID= " + str(self.threadID) + " k= " + str(self.k))
         # print runtime #
         end_time = datetime.datetime.now()
-        print_runtime(start_time, end_time, self.test_name, len(before.nodes), len(before.edges), self.name, s, self.k)
+        print_runtime_id(1, start_time, end_time, self.test_name, len(before.nodes), len(before.edges),
+                         self.name, s, self.k)
         self.sol = s
 
     def stop(self):

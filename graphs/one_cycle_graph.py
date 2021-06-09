@@ -20,5 +20,6 @@ def get_graph_nodes(number_of_nodes):
         nx.add_cycle(graph, [1, 2, 3])
         for i in range(3, number_of_nodes - 1):
             graph.add_edge(i, i + 1)
-
+        for i in range(1, number_of_nodes - 2):
+            graph.add_edge(i, i + 2)
     return graph

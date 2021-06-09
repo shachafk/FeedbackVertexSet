@@ -5,7 +5,7 @@ from utils.functions import *
 
 def run_test(n, k):
     start_time = datetime.datetime.now()
-    time.sleep(0.1)
+    time.sleep(0.001)
     print("Testing a custom graph with half cycles", end="\n")
 
     number_of_nodes = n
@@ -27,14 +27,14 @@ def run_test(n, k):
 
     # print runtime #
     end_time = datetime.datetime.now()
-    print_runtime(start_time,end_time, "half cycles", len(before.nodes),len(before.edges), "randomized", s,k)
+    print_runtime(start_time, end_time, "half cycles", len(before.nodes), len(before.edges), "randomized", s, k)
 
     # show graphs #
     # show_two_graphs(before, after)
 
 
-
 if __name__ == '__main__':
-    for n in range(6, 20):
-        run_test(n, 10)
-        # if n % 2 == 0:
+    for k in range(1, 9):
+        run_test(15, k)
+
+

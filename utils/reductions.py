@@ -1,3 +1,6 @@
+from datetime import datetime
+import datetime
+
 import networkx as nx
 from utils.functions import show_graph
 
@@ -71,14 +74,20 @@ def run_reductions(g: nx.MultiGraph, k: int):
     x = set()
     while True:
         _continue = False
-        #show_graph(g, "")
+        # show_graph(g, "")
         for f in [reduction1, reduction2, reduction3, reduction4]:
+            # before = datetime.datetime.now()
             (k, x0, changed) = f(g, k)
+            # time = datetime.datetime.now() - before
+            # print(time, k, f)
 
-            if changed:
+            if k < 0:
+                _continue = False
+
+            elif changed:
                 _continue = True
                 # print("changed in reduction " + str(f))
-               # show_graph(g, "")
+                # show_graph(g, "")
                 if x0 is not None:
                     x = x.union(x0)
 
